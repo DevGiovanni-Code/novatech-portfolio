@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <!-- Meta -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <meta
+      name="description"
+      content="Clínica Sorriso — atendimento odontológico especializado, tecnologia e cuidado humanizado em Brasília."
+    />
+
+    <!-- Title -->
+    <title>Clínica Sorriso | Odontologia Especializada</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <!-- =====================================================
+     MODAL DE AGENDAMENTO
+    ===================================================== -->
+
+  <div class="appointment-modal" id="appointmentModal" aria-hidden="true">
+    <div class="appointment-overlay"></div>
+
+    <div
+      class="appointment-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="appointment-title"
+    >
+      <button
+        class="appointment-close"
+        type="button"
+        aria-label="Fechar formulário"
+      >
+        &times;
+      </button>
+
+      <!-- FORMULÁRIO -->
+
+      <div class="appointment-form-wrapper">
+        <span class="eyebrow">Agendamento</span>
+
+        <h2 id="appointment-title">Agende sua consulta</h2>
+
+        <p class="appointment-intro">
+          Preencha seus dados e nossa equipe entrará em contato para confirmar o
+          melhor horário.
+        </p>
+
+        <form id="appointmentForm">
+          <div class="form-group">
+            <label for="patientName">Nome completo</label>
+
+            <input
+              type="text"
+              id="patientName"
+              name="patientName"
+              placeholder="Digite seu nome"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="patientEmail">E-mail</label>
+
+              <input
+                type="email"
+                id="patientEmail"
+                name="patientEmail"
+                placeholder="seu@email.com"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="patientPhone">Telefone</label>
+
+              <input
+                type="tel"
+                id="patientPhone"
+                name="patientPhone"
+                placeholder="(61) 99999-9999"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="appointmentType">Especialidade</label>
+
+              <select id="appointmentType" name="appointmentType" required>
+                <option value="">Selecione uma opção</option>
+
+                <option value="avaliacao">Avaliação odontológica</option>
+
+                <option value="limpeza">Limpeza e prevenção</option>
+
+                <option value="ortodontia">Ortodontia</option>
+
+                <option value="estetica">Odontologia estética</option>
+
+                <option value="implantes">Implantes</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="appointmentDate">Data preferencial</label>
+
+              <input
+                type="date"
+                id="appointmentDate"
+                name="appointmentDate"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="patientMessage">Observações</label>
+
+            <textarea
+              id="patientMessage"
+              name="patientMessage"
+              rows="4"
+              placeholder="Gostaria de informar algo?"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="appointment-submit">
+            Solicitar agendamento
+          </button>
+        </form>
+      </div>
+
+      <!-- SUCESSO -->
+
+      <div class="appointment-success">
+        <div class="success-icon">✓</div>
+
+        <span class="eyebrow">Solicitação recebida</span>
+
+        <h2>Tudo certo!</h2>
+
+        <p>
+          Recebemos seus dados. Nossa equipe entrará em contato para confirmar o
+          melhor horário para sua consulta.
+        </p>
+
+        <button type="button" class="appointment-success-close">
+          Voltar ao site
+        </button>
+      </div>
+    </div>
+  </div>
+  <body>
+    <!-- ======================================================
+         HEADER
+    ======================================================= -->
+
+    <header class="site-header">
+      <div class="container">
+        <nav class="main-nav">
+          <a href="#inicio" class="logo">
+            Clínica
+            <span>Sorriso</span>
+          </a>
+
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+
+          <ul class="nav-menu">
+            <li>
+              <a href="#inicio">Início</a>
+            </li>
+
+            <li>
+              <a href="#especialidades">Especialidades</a>
+            </li>
+
+            <li>
+              <a href="#clinica">Clínica</a>
+            </li>
+
+            <li>
+              <a href="#equipe">Equipe</a>
+            </li>
+
+            <li>
+              <a href="#contato">Contato</a>
+            </li>
+
+            <li>
+              <a href="#agendamento" class="nav-cta js-appointment">
+                Agendar consulta
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ======================================================
+           HERO
+      ======================================================= -->
+
+      <section id="inicio" class="hero">
+        <div class="container hero-container">
+          <div class="hero-content">
+            <span class="eyebrow reveal">
+              Odontologia especializada em Brasília
+            </span>
+
+            <h1 class="hero-title reveal delay-1">
+              Seu sorriso merece cuidado especializado.
+            </h1>
+
+            <p class="hero-description reveal delay-2">
+              Na Clínica Sorriso, unimos tecnologia, experiência e atendimento
+              humanizado para cuidar da sua saúde bucal com segurança e
+              tranquilidade.
+            </p>
+
+            <div class="hero-actions reveal delay-3">
+              <a href="#agendamento" class="btn-primary js-appointment">
+                Agendar consulta
+              </a>
+
+              <a href="#especialidades" class="btn-secondary">
+                Conhecer especialidades
+              </a>
+            </div>
+
+            <div class="hero-trust reveal delay-3">
+              <div class="hero-trust-item">
+                <strong>+500</strong>
+                <span>pacientes atendidos</span>
+              </div>
+
+              <div class="hero-trust-divider"></div>
+
+              <div class="hero-trust-item">
+                <strong>4,9/5</strong>
+                <span>avaliação dos pacientes</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-image reveal delay-2">
+            <img
+              src="assets/images/hero-clinic.jpg"
+              alt="Profissional da Clínica Sorriso atendendo uma paciente"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           FAIXA DE CONFIANÇA
+      ======================================================= -->
+
+      <section class="trust-bar">
+        <div class="container trust-grid">
+          <div class="trust-item reveal">
+            <span class="trust-icon">✓</span>
+
+            <div>
+              <strong>Atendimento humanizado</strong>
+              <p>Cuidado individual em cada consulta.</p>
+            </div>
+          </div>
+
+          <div class="trust-item reveal delay-1">
+            <span class="trust-icon">✦</span>
+
+            <div>
+              <strong>Tecnologia moderna</strong>
+              <p>Equipamentos para diagnósticos mais precisos.</p>
+            </div>
+          </div>
+
+          <div class="trust-item reveal delay-2">
+            <span class="trust-icon">◉</span>
+
+            <div>
+              <strong>Equipe especializada</strong>
+              <p>Profissionais preparados para cuidar do seu sorriso.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           ESPECIALIDADES
+      ======================================================= -->
+
+      <section id="especialidades" class="specialties">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Nossas especialidades</span>
+
+            <h2>Cuidado completo para todas as fases do seu sorriso.</h2>
+
+            <p>
+              Reunimos diferentes áreas da odontologia para oferecer um
+              tratamento completo, seguro e personalizado para cada paciente.
+            </p>
+          </div>
+
+          <div class="specialties-grid">
+            <article class="specialty-item reveal">
+              <span class="specialty-number">01</span>
+
+              <div class="specialty-content">
+                <h3>Ortodontia</h3>
+
+                <p>
+                  Tratamentos para corrigir o posicionamento dos dentes e
+                  melhorar a estética e a função do sorriso.
+                </p>
+
+                <a href="#agendamento" class="text-link">Saiba mais →</a>
+              </div>
+            </article>
+
+            <article class="specialty-item reveal delay-1">
+              <span class="specialty-number">02</span>
+
+              <div class="specialty-content">
+                <h3>Implantes</h3>
+
+                <p>
+                  Soluções modernas para substituir dentes perdidos, recuperando
+                  segurança, conforto e qualidade de vida.
+                </p>
+
+                <a href="#agendamento" class="text-link">Saiba mais →</a>
+              </div>
+            </article>
+
+            <article class="specialty-item reveal delay-2">
+              <span class="specialty-number">03</span>
+
+              <div class="specialty-content">
+                <h3>Estética Dental</h3>
+
+                <p>
+                  Procedimentos planejados para transformar o sorriso
+                  preservando naturalidade, harmonia e saúde.
+                </p>
+
+                <a href="#agendamento" class="text-link">Saiba mais →</a>
+              </div>
+            </article>
+
+            <article class="specialty-item reveal delay-3">
+              <span class="specialty-number">04</span>
+
+              <div class="specialty-content">
+                <h3>Clínica Geral</h3>
+
+                <p>
+                  Prevenção, limpeza, restaurações e acompanhamento completo
+                  para manter sua saúde bucal em dia.
+                </p>
+
+                <a href="#agendamento" class="text-link">Saiba mais →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           DIFERENCIAIS
+      ======================================================= -->
+
+      <section class="benefits">
+        <div class="container benefits-container">
+          <div class="benefits-content reveal">
+            <span class="eyebrow">Por que escolher a Clínica Sorriso?</span>
+
+            <h2>
+              Tecnologia e cuidado para você se sentir seguro em cada etapa.
+            </h2>
+
+            <p>
+              Acreditamos que um bom tratamento começa antes mesmo da consulta.
+              Por isso, cuidamos de cada detalhe para tornar sua experiência
+              mais confortável, clara e tranquila.
+            </p>
+
+            <a href="#agendamento" class="btn-primary">Conhecer a clínica</a>
+          </div>
+
+          <div class="benefits-list">
+            <article class="benefit-item reveal delay-1">
+              <span class="benefit-icon">01</span>
+
+              <div>
+                <h3>Diagnóstico preciso</h3>
+
+                <p>
+                  Avaliações detalhadas para entender suas necessidades antes de
+                  definir qualquer tratamento.
+                </p>
+              </div>
+            </article>
+
+            <article class="benefit-item reveal delay-2">
+              <span class="benefit-icon">02</span>
+
+              <div>
+                <h3>Plano personalizado</h3>
+
+                <p>
+                  Cada paciente recebe um planejamento adequado aos seus
+                  objetivos, necessidades e rotina.
+                </p>
+              </div>
+            </article>
+
+            <article class="benefit-item reveal delay-3">
+              <span class="benefit-icon">03</span>
+
+              <div>
+                <h3>Ambiente confortável</h3>
+
+                <p>
+                  Um espaço pensado para proporcionar tranquilidade desde a
+                  chegada até o final do atendimento.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           SOBRE A CLÍNICA
+      ======================================================= -->
+
+      <section id="clinica" class="clinic">
+        <div class="container clinic-container">
+          <div class="clinic-image reveal">
+            <img
+              src="assets/images/clinic-interior.jpg"
+              alt="Interior moderno e acolhedor da Clínica Sorriso"
+            />
+          </div>
+
+          <div class="clinic-content reveal delay-1">
+            <span class="eyebrow">Sobre a clínica</span>
+
+            <h2>Um espaço criado para cuidar de você.</h2>
+
+            <p>
+              A Clínica Sorriso nasceu com o propósito de tornar o atendimento
+              odontológico mais próximo, transparente e confortável.
+            </p>
+
+            <p>
+              Nossa equipe trabalha para oferecer tratamentos seguros,
+              utilizando tecnologia e conhecimento técnico sem deixar de lado
+              aquilo que mais importa: ouvir cada paciente e entender suas
+              necessidades.
+            </p>
+
+            <div class="clinic-stats">
+              <div class="clinic-stat">
+                <strong>10+</strong>
+                <span>anos de experiência</span>
+              </div>
+
+              <div class="clinic-stat">
+                <strong>500+</strong>
+                <span>pacientes atendidos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           EQUIPE
+      ======================================================= -->
+
+      <section id="equipe" class="team">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Nossa equipe</span>
+
+            <h2>Profissionais que cuidam do seu sorriso.</h2>
+
+            <p>
+              Uma equipe multidisciplinar preparada para oferecer atendimento
+              personalizado e acompanhar você durante todo o tratamento.
+            </p>
+          </div>
+
+          <div class="team-grid">
+            <article class="team-member reveal">
+              <div class="team-image">
+                <img
+                  src="assets/images/team-dentist-1.jpg"
+                  alt="Dra. Mariana Costa, especialista em ortodontia"
+                />
+              </div>
+
+              <div class="team-info">
+                <span class="team-specialty">Ortodontia</span>
+
+                <h3>Dra. Mariana Costa</h3>
+
+                <p>
+                  Especialista em ortodontia e planejamento de tratamentos
+                  personalizados.
+                </p>
+              </div>
+            </article>
+
+            <article class="team-member reveal delay-1">
+              <div class="team-image">
+                <img
+                  src="assets/images/team-dentist-2.jpg"
+                  alt="Dr. Ricardo Almeida, especialista em implantodontia"
+                />
+              </div>
+
+              <div class="team-info">
+                <span class="team-specialty">Implantodontia</span>
+
+                <h3>Dr. Ricardo Almeida</h3>
+
+                <p>Especialista em implantes e reabilitação oral.</p>
+              </div>
+            </article>
+
+            <article class="team-member reveal delay-2">
+              <div class="team-image">
+                <img
+                  src="assets/images/team-dentist-3.jpg"
+                  alt="Dra. Fernanda Silva, especialista em estética dental"
+                />
+              </div>
+
+              <div class="team-info">
+                <span class="team-specialty">Estética Dental</span>
+
+                <h3>Dra. Fernanda Silva</h3>
+
+                <p>
+                  Especialista em estética dental e harmonização do sorriso.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           COMO FUNCIONA
+      ======================================================= -->
+
+      <section class="process">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Como funciona</span>
+
+            <h2>Começar seu tratamento é mais simples do que você imagina.</h2>
+          </div>
+
+          <div class="process-grid">
+            <article class="process-item reveal">
+              <span class="process-number">01</span>
+
+              <h3>Agende sua consulta</h3>
+
+              <p>
+                Escolha o melhor horário e entre em contato com nossa equipe.
+              </p>
+            </article>
+
+            <article class="process-item reveal delay-1">
+              <span class="process-number">02</span>
+
+              <h3>Faça sua avaliação</h3>
+
+              <p>
+                Conversamos sobre suas necessidades e realizamos uma avaliação
+                completa.
+              </p>
+            </article>
+
+            <article class="process-item reveal delay-2">
+              <span class="process-number">03</span>
+
+              <h3>Receba seu plano</h3>
+
+              <p>
+                Apresentamos as melhores opções de tratamento para o seu caso.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           DEPOIMENTOS
+      ======================================================= -->
+
+      <section class="testimonials">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Experiências reais</span>
+
+            <h2>O que nossos pacientes dizem.</h2>
+          </div>
+
+          <div class="testimonials-grid">
+            <article class="testimonial reveal">
+              <p class="testimonial-text">
+                "Desde o primeiro atendimento me senti muito confortável. Toda a
+                equipe explicou cada etapa do tratamento e sempre esteve
+                disponível para tirar minhas dúvidas."
+              </p>
+
+              <div class="testimonial-author">
+                <strong>Camila Oliveira</strong>
+                <span>Paciente</span>
+              </div>
+            </article>
+
+            <article class="testimonial reveal delay-1">
+              <p class="testimonial-text">
+                "O atendimento foi excelente e o resultado superou minhas
+                expectativas. A clínica é muito bonita e os profissionais são
+                extremamente atenciosos."
+              </p>
+
+              <div class="testimonial-author">
+                <strong>Lucas Martins</strong>
+                <span>Paciente</span>
+              </div>
+            </article>
+
+            <article class="testimonial reveal delay-2">
+              <p class="testimonial-text">
+                "Eu tinha bastante receio de começar meu tratamento, mas fui
+                muito bem recebido. Hoje tenho muito mais confiança no meu
+                sorriso."
+              </p>
+
+              <div class="testimonial-author">
+                <strong>Juliana Mendes</strong>
+                <span>Paciente</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           FAQ
+      ======================================================= -->
+
+      <section class="faq">
+        <div class="container faq-container">
+          <div class="faq-heading reveal">
+            <span class="eyebrow">Dúvidas frequentes</span>
+
+            <h2>Antes de agendar, talvez você queira saber.</h2>
+          </div>
+
+          <div class="faq-list">
+            <details class="faq-item reveal">
+              <summary>Como funciona a primeira consulta?</summary>
+
+              <p>
+                Na primeira consulta realizamos uma avaliação completa,
+                conversamos sobre suas necessidades e explicamos as opções
+                disponíveis para o seu tratamento.
+              </p>
+            </details>
+
+            <details class="faq-item reveal delay-1">
+              <summary>A clínica atende crianças?</summary>
+
+              <p>
+                Sim. Nossa equipe está preparada para oferecer atendimento
+                odontológico adequado para diferentes faixas etárias.
+              </p>
+            </details>
+
+            <details class="faq-item reveal delay-2">
+              <summary>Quais formas de pagamento são aceitas?</summary>
+
+              <p>
+                Trabalhamos com diferentes formas de pagamento e apresentamos as
+                condições disponíveis durante o atendimento.
+              </p>
+            </details>
+
+            <details class="faq-item reveal delay-3">
+              <summary>Como posso agendar uma consulta?</summary>
+
+              <p>
+                Você pode entrar em contato conosco pelo telefone ou utilizar o
+                botão de agendamento disponível nesta página.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           LOCALIZAÇÃO
+      ======================================================= -->
+
+      <section id="contato" class="location">
+        <div class="container location-container">
+          <div class="location-content reveal">
+            <span class="eyebrow">Onde estamos</span>
+
+            <h2>Estamos esperando por você.</h2>
+
+            <p>
+              Nossa clínica está localizada em Brasília, em uma região de fácil
+              acesso e preparada para receber você com conforto.
+            </p>
+
+            <div class="location-details">
+              <div class="location-detail">
+                <strong>Endereço</strong>
+                <span>Asa Sul — Brasília, DF</span>
+              </div>
+
+              <div class="location-detail">
+                <strong>Horário</strong>
+                <span>Segunda a sexta, das 08h às 18h</span>
+              </div>
+
+              <div class="location-detail">
+                <strong>Telefone</strong>
+                <span>(61) 3333-2026</span>
+              </div>
+            </div>
+
+            <a href="#agendamento" class="btn-primary js-appointment">
+              Agendar consulta
+            </a>
+          </div>
+
+          <div class="location-map reveal delay-1">
+            <div class="map-placeholder">
+              <span>📍</span>
+              <strong>Clínica Sorriso</strong>
+              <p>Brasília — DF</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           CTA
+      ======================================================= -->
+
+      <section id="agendamento" class="appointment">
+        <div class="container appointment-container reveal">
+          <span class="eyebrow">Seu próximo passo</span>
+
+          <h2>Pronto para cuidar melhor do seu sorriso?</h2>
+
+          <p>
+            Agende sua avaliação e descubra como podemos ajudar você a alcançar
+            um sorriso mais saudável e confiante.
+          </p>
+
+          <a href="#" class="btn-appointment js-appointment">
+            Agendar consulta
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ======================================================
+         FOOTER
+    ======================================================= -->
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <a href="#inicio" class="footer-logo">
+              Clínica
+              <span>Sorriso</span>
+            </a>
+
+            <p>
+              Odontologia especializada com tecnologia, segurança e atendimento
+              humanizado.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h3>Links</h3>
+
+            <a href="#inicio">Início</a>
+            <a href="#especialidades">Especialidades</a>
+            <a href="#clinica">Clínica</a>
+            <a href="#equipe">Equipe</a>
+          </div>
+
+          <div class="footer-contact">
+            <h3>Contato</h3>
+
+            <p>Brasília — DF</p>
+            <p>(61) 3333-2026</p>
+            <p>contato@clinicasorriso.com</p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 Clínica Sorriso. Todos os direitos reservados.</p>
+
+          <span>Projeto fictício desenvolvido pela NovaTech.</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ======================================================
+         MOBILE APPOINTMENT
+    ======================================================= -->
+
+    <div class="mobile-appointment">
+      <a href="#agendamento" class="js-appointment">Agendar consulta</a>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+  </body>
+</html>

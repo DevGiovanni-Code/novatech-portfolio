@@ -1,0 +1,2147 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   VARIÁVEIS
+========================================================= */
+
+:root {
+  /* Cores */
+  --color-primary: #0f766e;
+  --color-primary-dark: #115e59;
+  --color-primary-light: #ccfbf1;
+
+  --color-accent: #38bdf8;
+
+  --color-background: #ffffff;
+  --color-surface: #f0fdfa;
+  --color-surface-light: #f8fafc;
+
+  --color-text: #0f172a;
+  --color-text-light: #64748b;
+  --color-text-muted: #94a3b8;
+
+  --color-border: #e2e8f0;
+
+  /* Layout */
+  --container-width: 1120px;
+  --section-padding: 96px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  /* Sombras */
+  --shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.06);
+  --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  --shadow-hover: 0 18px 40px rgba(15, 23, 42, 0.12);
+
+  /* Transições */
+  --transition: 0.35s ease;
+}
+
+/* =========================================================
+   BASE
+========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+
+  background-color: var(--color-background);
+  color: var(--color-text);
+
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  width: min(var(--container-width), 90%);
+  margin-inline: auto;
+}
+
+/* =========================================================
+   REVEAL / ANIMAÇÃO DE ENTRADA
+========================================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 {
+  transition-delay: 0.1s;
+}
+
+.delay-2 {
+  transition-delay: 0.2s;
+}
+
+.delay-3 {
+  transition-delay: 0.3s;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+
+  z-index: 1000;
+
+  padding: 20px 0;
+
+  background-color: rgba(255, 255, 255, 0.94);
+
+  backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid transparent;
+
+  transition:
+    padding var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.site-header.scrolled {
+  padding: 14px 0;
+
+  border-color: var(--color-border);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.main-nav {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 32px;
+}
+
+.logo {
+  color: var(--color-text);
+
+  text-decoration: none;
+
+  font-size: 1.35rem;
+  font-weight: 700;
+
+  letter-spacing: -0.04em;
+}
+
+.logo span {
+  color: var(--color-primary);
+}
+
+.nav-menu {
+  display: flex;
+
+  align-items: center;
+
+  gap: 28px;
+
+  list-style: none;
+}
+
+.nav-menu a {
+  position: relative;
+
+  color: var(--color-text-light);
+
+  text-decoration: none;
+
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  transition: color var(--transition);
+}
+
+.nav-menu a:not(.nav-cta)::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -6px;
+
+  width: 100%;
+  height: 2px;
+
+  background-color: var(--color-primary);
+
+  transform: scaleX(0);
+  transform-origin: center;
+
+  transition: transform var(--transition);
+}
+
+.nav-menu a:not(.nav-cta):hover {
+  color: var(--color-primary);
+}
+
+.nav-menu a:not(.nav-cta):hover::after {
+  transform: scaleX(1);
+}
+
+.nav-cta {
+  padding: 10px 18px;
+
+  background-color: var(--color-primary);
+
+  color: #fff !important;
+
+  border-radius: var(--radius-sm);
+
+  transition:
+    background-color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.nav-cta:hover {
+  background-color: var(--color-primary-dark);
+
+  transform: translateY(-2px);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.menu-toggle {
+  display: none;
+
+  border: 0;
+  background: transparent;
+
+  color: var(--color-text);
+
+  font-size: 1.8rem;
+
+  cursor: pointer;
+
+  z-index: 1001;
+}
+
+/* =========================================================
+   BOTÕES
+========================================================= */
+
+.btn-primary {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 24px;
+
+  background-color: var(--color-primary);
+  color: #fff;
+
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+
+  text-decoration: none;
+
+  font-weight: 600;
+
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+
+  transform: translateY(-3px);
+
+  box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+  display: inline-flex;
+
+  align-items: center;
+
+  color: var(--color-primary);
+
+  text-decoration: none;
+
+  font-weight: 600;
+
+  transition:
+    color var(--transition),
+    transform var(--transition);
+}
+
+.btn-secondary:hover {
+  color: var(--color-primary-dark);
+
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.eyebrow {
+  display: inline-block;
+
+  margin-bottom: 16px;
+
+  color: var(--color-primary);
+
+  font-size: 0.82rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.08em;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  padding: 88px 0 96px;
+
+  overflow: hidden;
+}
+
+.hero-container {
+  display: grid;
+
+  grid-template-columns: 1.05fr 0.95fr;
+
+  align-items: center;
+
+  gap: 72px;
+}
+
+.hero-content {
+  max-width: 620px;
+}
+
+.hero-title {
+  max-width: 11ch;
+
+  margin-bottom: 24px;
+
+  font-size: clamp(3rem, 6vw, 4.5rem);
+
+  line-height: 1.04;
+
+  letter-spacing: -0.055em;
+}
+
+.hero-description {
+  max-width: 56ch;
+
+  margin-bottom: 32px;
+
+  color: var(--color-text-light);
+
+  font-size: 1.08rem;
+
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 24px;
+
+  margin-bottom: 48px;
+}
+
+.hero-trust {
+  display: flex;
+
+  align-items: center;
+
+  gap: 24px;
+}
+
+.hero-trust-item {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.hero-trust-item strong {
+  color: var(--color-text);
+
+  font-size: 1.15rem;
+}
+
+.hero-trust-item span {
+  color: var(--color-text-light);
+
+  font-size: 0.82rem;
+}
+
+.hero-trust-divider {
+  width: 1px;
+  height: 42px;
+
+  background-color: var(--color-border);
+}
+
+.hero-image {
+  position: relative;
+
+  display: flex;
+
+  justify-content: center;
+}
+
+.hero-image::before {
+  content: "";
+
+  position: absolute;
+
+  width: 85%;
+  height: 85%;
+
+  top: 8%;
+  right: 0;
+
+  background-color: var(--color-primary-light);
+
+  border-radius: var(--radius-lg);
+
+  z-index: -1;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 520px;
+
+  aspect-ratio: 4 / 5;
+
+  object-fit: cover;
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow);
+}
+
+/* =========================================================
+   TRUST BAR
+========================================================= */
+
+.trust-bar {
+  padding: 28px 0;
+
+  background-color: var(--color-surface);
+
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.trust-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 32px;
+}
+
+.trust-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+}
+
+.trust-icon {
+  display: grid;
+
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  background-color: var(--color-primary-light);
+
+  color: var(--color-primary);
+
+  border-radius: 50%;
+
+  font-weight: 700;
+}
+
+.trust-item strong {
+  display: block;
+
+  margin-bottom: 2px;
+
+  font-size: 0.9rem;
+}
+
+.trust-item p {
+  color: var(--color-text-light);
+
+  font-size: 0.8rem;
+}
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.section-heading {
+  max-width: 720px;
+
+  margin: 0 auto 64px;
+
+  text-align: center;
+}
+
+.section-heading h2 {
+  margin-bottom: 20px;
+
+  font-size: clamp(2.2rem, 4vw, 3rem);
+
+  line-height: 1.1;
+
+  letter-spacing: -0.04em;
+}
+
+.section-heading p {
+  color: var(--color-text-light);
+
+  line-height: 1.8;
+}
+
+/* =========================================================
+   ESPECIALIDADES
+========================================================= */
+
+.specialties {
+  padding: var(--section-padding) 0;
+}
+
+.specialties-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 0;
+
+  border-top: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+}
+
+.specialty-item {
+  display: grid;
+
+  grid-template-columns: 60px 1fr;
+
+  gap: 24px;
+
+  min-height: 250px;
+
+  padding: 36px;
+
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+
+  transition:
+    background-color var(--transition),
+    transform var(--transition);
+}
+
+.specialty-item:hover {
+  background-color: var(--color-surface);
+
+  transform: translateY(-4px);
+}
+
+.specialty-number {
+  color: var(--color-primary);
+
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.specialty-content h3 {
+  margin-bottom: 12px;
+
+  font-size: 1.35rem;
+
+  letter-spacing: -0.02em;
+}
+
+.specialty-content p {
+  margin-bottom: 24px;
+
+  color: var(--color-text-light);
+
+  line-height: 1.75;
+}
+
+.text-link {
+  color: var(--color-primary);
+
+  text-decoration: none;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  transition:
+    color var(--transition),
+    transform var(--transition);
+}
+
+.text-link:hover {
+  color: var(--color-primary-dark);
+
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   DIFERENCIAIS
+========================================================= */
+
+.benefits {
+  padding: var(--section-padding) 0;
+
+  background-color: var(--color-surface);
+}
+
+.benefits-container {
+  display: grid;
+
+  grid-template-columns: 0.9fr 1.1fr;
+
+  gap: 96px;
+
+  align-items: center;
+}
+
+.benefits-content h2 {
+  max-width: 14ch;
+
+  margin-bottom: 24px;
+
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+
+  line-height: 1.08;
+
+  letter-spacing: -0.045em;
+}
+
+.benefits-content p {
+  max-width: 52ch;
+
+  margin-bottom: 32px;
+
+  color: var(--color-text-light);
+
+  line-height: 1.8;
+}
+
+.benefits-list {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.benefit-item {
+  display: grid;
+
+  grid-template-columns: 58px 1fr;
+
+  gap: 24px;
+
+  padding: 28px 0;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.benefit-item:first-child {
+  padding-top: 0;
+}
+
+.benefit-icon {
+  color: var(--color-primary);
+
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.benefit-item h3 {
+  margin-bottom: 8px;
+
+  font-size: 1.1rem;
+}
+
+.benefit-item p {
+  color: var(--color-text-light);
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   SOBRE / CLÍNICA
+========================================================= */
+
+.clinic {
+  padding: var(--section-padding) 0;
+}
+
+.clinic-container {
+  display: grid;
+
+  grid-template-columns: 0.95fr 1.05fr;
+
+  align-items: center;
+
+  gap: 88px;
+}
+
+.clinic-image {
+  position: relative;
+}
+
+.clinic-image::after {
+  content: "";
+
+  position: absolute;
+
+  left: -20px;
+  bottom: -20px;
+
+  width: 110px;
+  height: 110px;
+
+  background-color: var(--color-primary-light);
+
+  border-radius: var(--radius-md);
+
+  z-index: -1;
+}
+
+.clinic-image img {
+  width: 100%;
+
+  aspect-ratio: 4 / 3;
+
+  object-fit: cover;
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow);
+}
+
+.clinic-content h2 {
+  max-width: 15ch;
+
+  margin-bottom: 24px;
+
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+
+  line-height: 1.08;
+
+  letter-spacing: -0.045em;
+}
+
+.clinic-content > p {
+  max-width: 58ch;
+
+  margin-bottom: 18px;
+
+  color: var(--color-text-light);
+
+  line-height: 1.8;
+}
+
+.clinic-stats {
+  display: flex;
+
+  gap: 48px;
+
+  margin-top: 40px;
+
+  padding-top: 28px;
+
+  border-top: 1px solid var(--color-border);
+}
+
+.clinic-stat {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.clinic-stat strong {
+  color: var(--color-primary);
+
+  font-size: 2rem;
+
+  line-height: 1;
+}
+
+.clinic-stat span {
+  color: var(--color-text-light);
+
+  font-size: 0.85rem;
+}
+
+/* =========================================================
+   EQUIPE
+========================================================= */
+
+.team {
+  padding: var(--section-padding) 0;
+
+  background-color: var(--color-surface);
+}
+
+.team-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 32px;
+}
+
+.team-member {
+  background-color: #fff;
+
+  border-radius: var(--radius-lg);
+
+  overflow: hidden;
+
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.team-member:hover {
+  transform: translateY(-7px);
+
+  box-shadow: var(--shadow-hover);
+}
+
+.team-image {
+  overflow: hidden;
+}
+
+.team-image img {
+  width: 100%;
+
+  aspect-ratio: 4 / 4.5;
+
+  object-fit: cover;
+
+  transition: transform 0.6s ease;
+}
+
+.team-member:hover .team-image img {
+  transform: scale(1.04);
+}
+
+.team-info {
+  padding: 28px;
+}
+
+.team-specialty {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--color-primary);
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.07em;
+}
+
+.team-info h3 {
+  margin-bottom: 10px;
+
+  font-size: 1.25rem;
+}
+
+.team-info p {
+  color: var(--color-text-light);
+
+  font-size: 0.9rem;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   PROCESSO
+========================================================= */
+
+.process {
+  padding: var(--section-padding) 0;
+}
+
+.process-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 0;
+
+  border-top: 1px solid var(--color-border);
+}
+
+.process-item {
+  position: relative;
+
+  min-height: 260px;
+
+  padding: 36px;
+
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+
+  transition:
+    background-color var(--transition),
+    transform var(--transition);
+}
+
+.process-item:first-child {
+  border-left: 1px solid var(--color-border);
+}
+
+.process-item:hover {
+  background-color: var(--color-surface);
+
+  transform: translateY(-5px);
+}
+
+.process-number {
+  display: block;
+
+  margin-bottom: 64px;
+
+  color: var(--color-primary);
+
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.process-item h3 {
+  margin-bottom: 12px;
+
+  font-size: 1.2rem;
+}
+
+.process-item p {
+  color: var(--color-text-light);
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   DEPOIMENTOS
+========================================================= */
+
+.testimonials {
+  padding: var(--section-padding) 0;
+
+  background-color: var(--color-surface);
+}
+
+.testimonials-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 24px;
+}
+
+.testimonial {
+  display: flex;
+
+  flex-direction: column;
+
+  min-height: 290px;
+
+  padding: 32px;
+
+  background-color: #fff;
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-md);
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.testimonial:hover {
+  transform: translateY(-6px);
+
+  box-shadow: var(--shadow);
+}
+
+.testimonial-text {
+  flex-grow: 1;
+
+  margin-bottom: 32px;
+
+  color: var(--color-text-light);
+
+  font-size: 0.95rem;
+
+  line-height: 1.8;
+
+  font-style: italic;
+}
+
+.testimonial-text::before {
+  content: "“";
+
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: var(--color-primary);
+
+  font-size: 3rem;
+
+  line-height: 0.6;
+}
+
+.testimonial-author {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.testimonial-author strong {
+  font-size: 0.9rem;
+}
+
+.testimonial-author span {
+  color: var(--color-text-muted);
+
+  font-size: 0.8rem;
+}
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.faq {
+  padding: var(--section-padding) 0;
+}
+
+.faq-container {
+  display: grid;
+
+  grid-template-columns: 0.75fr 1.25fr;
+
+  gap: 96px;
+
+  align-items: start;
+}
+
+.faq-heading h2 {
+  max-width: 12ch;
+
+  font-size: clamp(2.2rem, 4vw, 3rem);
+
+  line-height: 1.1;
+
+  letter-spacing: -0.04em;
+}
+
+.faq-list {
+  border-top: 1px solid var(--color-border);
+}
+
+.faq-item {
+  padding: 24px 0;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-item summary {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  color: var(--color-text);
+
+  cursor: pointer;
+
+  list-style: none;
+
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+
+  flex-shrink: 0;
+
+  color: var(--color-primary);
+
+  font-size: 1.5rem;
+  font-weight: 400;
+
+  transition: transform var(--transition);
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-item p {
+  max-width: 65ch;
+
+  padding-top: 16px;
+
+  color: var(--color-text-light);
+
+  line-height: 1.75;
+}
+
+/* =========================================================
+   LOCALIZAÇÃO
+========================================================= */
+
+.location {
+  padding: var(--section-padding) 0;
+
+  background-color: var(--color-surface);
+}
+
+.location-container {
+  display: grid;
+
+  grid-template-columns: 0.9fr 1.1fr;
+
+  gap: 72px;
+
+  align-items: center;
+}
+
+.location-content h2 {
+  max-width: 12ch;
+
+  margin-bottom: 24px;
+
+  font-size: clamp(2.2rem, 4vw, 3rem);
+
+  line-height: 1.1;
+
+  letter-spacing: -0.04em;
+}
+
+.location-content > p {
+  max-width: 50ch;
+
+  margin-bottom: 32px;
+
+  color: var(--color-text-light);
+
+  line-height: 1.8;
+}
+
+.location-details {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+
+  margin-bottom: 32px;
+}
+
+.location-detail {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.location-detail strong {
+  font-size: 0.85rem;
+}
+
+.location-detail span {
+  color: var(--color-text-light);
+
+  font-size: 0.9rem;
+}
+
+.location-map {
+  min-height: 420px;
+
+  display: grid;
+
+  place-items: center;
+
+  background: linear-gradient(
+    135deg,
+    rgba(15, 118, 110, 0.08),
+    rgba(56, 189, 248, 0.12)
+  );
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-lg);
+
+  overflow: hidden;
+}
+
+.map-placeholder {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 40px;
+
+  text-align: center;
+}
+
+.map-placeholder span {
+  margin-bottom: 8px;
+
+  font-size: 2.5rem;
+}
+
+.map-placeholder strong {
+  font-size: 1.1rem;
+}
+
+.map-placeholder p {
+  color: var(--color-text-light);
+
+  font-size: 0.9rem;
+}
+
+/* =========================================================
+   CTA / AGENDAMENTO
+========================================================= */
+
+.appointment {
+  padding: var(--section-padding) 0;
+
+  background-color: var(--color-primary);
+
+  color: #fff;
+
+  text-align: center;
+}
+
+.appointment-container {
+  max-width: 780px;
+
+  margin-inline: auto;
+}
+
+.appointment .eyebrow {
+  color: var(--color-primary-light);
+}
+
+.appointment h2 {
+  margin-bottom: 20px;
+
+  font-size: clamp(2.3rem, 5vw, 3.5rem);
+
+  line-height: 1.08;
+
+  letter-spacing: -0.045em;
+}
+
+.appointment p {
+  max-width: 60ch;
+
+  margin: 0 auto 32px;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  line-height: 1.8;
+}
+
+.btn-appointment {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px 28px;
+
+  background-color: #fff;
+
+  color: var(--color-primary);
+
+  border-radius: var(--radius-sm);
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    background-color var(--transition);
+}
+
+.btn-appointment:hover {
+  background-color: #f0fdfa;
+
+  transform: translateY(-4px);
+
+  box-shadow: var(--shadow-hover);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+  padding: 64px 0 24px;
+
+  background-color: #0f172a;
+
+  color: #fff;
+}
+
+.footer-content {
+  display: grid;
+
+  grid-template-columns: 1.5fr 0.7fr 1fr;
+
+  gap: 72px;
+
+  padding-bottom: 48px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-logo {
+  display: inline-block;
+
+  margin-bottom: 16px;
+
+  color: #fff;
+
+  text-decoration: none;
+
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.footer-logo span {
+  color: #5eead4;
+}
+
+.footer-brand p {
+  max-width: 36ch;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  line-height: 1.7;
+}
+
+.footer-links,
+.footer-contact {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.footer-links h3,
+.footer-contact h3 {
+  margin-bottom: 8px;
+
+  font-size: 0.95rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.65);
+
+  text-decoration: none;
+
+  font-size: 0.88rem;
+
+  transition: color var(--transition);
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+.footer-contact p {
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 0.88rem;
+}
+
+.footer-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  padding-top: 24px;
+}
+
+.footer-bottom p,
+.footer-bottom span {
+  color: rgba(255, 255, 255, 0.45);
+
+  font-size: 0.75rem;
+}
+
+/* =========================================================
+   MOBILE APPOINTMENT
+========================================================= */
+
+.mobile-appointment {
+  display: none;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 900px) {
+  :root {
+    --section-padding: 72px;
+  }
+
+  .hero-container,
+  .benefits-container,
+  .clinic-container,
+  .faq-container,
+  .location-container {
+    grid-template-columns: 1fr;
+
+    gap: 56px;
+  }
+
+  .hero-content {
+    max-width: 720px;
+  }
+
+  .hero-title {
+    max-width: 14ch;
+  }
+
+  .hero-image {
+    justify-content: flex-start;
+  }
+
+  .hero-image img {
+    max-width: 580px;
+  }
+
+  .benefits-content h2,
+  .clinic-content h2,
+  .location-content h2 {
+    max-width: 18ch;
+  }
+
+  .faq-heading h2 {
+    max-width: 18ch;
+  }
+
+  .team-grid,
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 64px;
+  }
+
+  .site-header {
+    padding: 16px 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    position: fixed;
+
+    top: 0;
+    right: 0;
+
+    width: min(86%, 360px);
+    height: 100vh;
+
+    padding: 110px 32px 40px;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 28px;
+
+    background-color: #fff;
+
+    box-shadow: -10px 0 30px rgba(15, 23, 42, 0.12);
+
+    transform: translateX(100%);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+      transform 0.4s ease,
+      opacity 0.3s ease,
+      visibility 0.4s ease;
+  }
+
+  .nav-menu.ativo {
+    transform: translateX(0);
+
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-menu a {
+    font-size: 1rem;
+  }
+
+  .nav-cta {
+    width: 100%;
+
+    text-align: center;
+  }
+
+  .hero {
+    padding: 64px 0 72px;
+  }
+
+  .hero-container {
+    gap: 48px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.7rem, 12vw, 4rem);
+  }
+
+  .hero-actions {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+  .hero-trust {
+    gap: 16px;
+  }
+
+  .trust-grid {
+    grid-template-columns: 1fr;
+
+    gap: 24px;
+  }
+
+  .specialties-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .specialty-item {
+    min-height: auto;
+
+    grid-template-columns: 48px 1fr;
+
+    padding: 28px 24px;
+  }
+
+  .benefits-list {
+    gap: 0;
+  }
+
+  .team-grid,
+  .testimonials-grid,
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-item {
+    min-height: auto;
+
+    border-left: 1px solid var(--color-border);
+  }
+
+  .process-number {
+    margin-bottom: 40px;
+  }
+
+  .clinic-stats {
+    gap: 32px;
+  }
+
+  .location-map {
+    min-height: 320px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .mobile-appointment {
+    position: fixed;
+
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+
+    display: block;
+
+    z-index: 900;
+
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .mobile-appointment a {
+    display: block;
+
+    padding: 14px 20px;
+
+    background-color: var(--color-primary);
+
+    color: #fff;
+
+    border-radius: var(--radius-sm);
+
+    box-shadow: var(--shadow-hover);
+
+    text-align: center;
+
+    text-decoration: none;
+
+    font-weight: 700;
+  }
+
+  .site-footer {
+    padding-bottom: 100px;
+  }
+}
+
+/* =========================================================
+   MOBILE PEQUENO
+========================================================= */
+
+@media (max-width: 480px) {
+  .hero-trust {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .hero-trust-divider {
+    width: 42px;
+    height: 1px;
+  }
+
+  .clinic-stats {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 20px;
+  }
+
+  .specialty-item {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .benefit-item {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   MODAL DE AGENDAMENTO
+========================================================= */
+
+.appointment-modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 2000;
+
+  display: grid;
+
+  place-items: center;
+
+  padding: 24px;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+}
+
+/* Modal aberto */
+
+.appointment-modal.ativo {
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.appointment-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background-color: rgba(15, 23, 42, 0.55);
+
+  backdrop-filter: blur(5px);
+
+  opacity: 0;
+
+  transition: opacity 0.35s ease;
+}
+
+.appointment-modal.ativo .appointment-overlay {
+  opacity: 1;
+}
+
+/* =========================================================
+   JANELA
+========================================================= */
+
+.appointment-dialog {
+  position: relative;
+
+  width: min(100%, 720px);
+
+  max-height: calc(100vh - 48px);
+
+  overflow-y: auto;
+
+  padding: 44px;
+
+  background-color: #fff;
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.22);
+
+  transform: translateY(30px) scale(0.97);
+
+  opacity: 0;
+
+  transition:
+    transform 0.4s ease,
+    opacity 0.3s ease;
+}
+
+.appointment-modal.ativo .appointment-dialog {
+  transform: translateY(0) scale(1);
+
+  opacity: 1;
+}
+
+/* =========================================================
+   FECHAR
+========================================================= */
+
+.appointment-close {
+  position: absolute;
+
+  top: 20px;
+  right: 20px;
+
+  display: grid;
+
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  border: 0;
+
+  background-color: var(--color-surface);
+
+  color: var(--color-text-light);
+
+  border-radius: 50%;
+
+  font-size: 1.5rem;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.appointment-close:hover {
+  background-color: var(--color-primary-light);
+
+  color: var(--color-primary);
+
+  transform: rotate(90deg);
+}
+
+/* =========================================================
+   CABEÇALHO DO FORMULÁRIO
+========================================================= */
+
+.appointment-form-wrapper h2,
+.appointment-success h2 {
+  margin-bottom: 12px;
+
+  font-size: clamp(2rem, 5vw, 2.7rem);
+
+  line-height: 1.1;
+
+  letter-spacing: -0.04em;
+}
+
+.appointment-intro {
+  max-width: 58ch;
+
+  margin-bottom: 32px;
+
+  color: var(--color-text-light);
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
+
+#appointmentForm {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.form-group label {
+  color: var(--color-text);
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+
+  padding: 13px 14px;
+
+  background-color: #fff;
+
+  color: var(--color-text);
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-sm);
+
+  outline: none;
+
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.form-group textarea {
+  resize: vertical;
+
+  min-height: 110px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--color-primary);
+
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+}
+
+/* =========================================================
+   BOTÃO DE ENVIO
+========================================================= */
+
+.appointment-submit {
+  width: 100%;
+
+  margin-top: 8px;
+
+  padding: 15px 24px;
+
+  background-color: var(--color-primary);
+
+  color: #fff;
+
+  border: 2px solid var(--color-primary);
+
+  border-radius: var(--radius-sm);
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.appointment-submit:hover {
+  background-color: var(--color-primary-dark);
+
+  border-color: var(--color-primary-dark);
+
+  transform: translateY(-3px);
+
+  box-shadow: var(--shadow);
+}
+
+/* =========================================================
+   MENSAGEM DE SUCESSO
+========================================================= */
+
+.appointment-success {
+  display: none;
+
+  text-align: center;
+}
+
+.appointment-success.visivel {
+  display: block;
+}
+
+.appointment-form-wrapper.oculto {
+  display: none;
+}
+
+.success-icon {
+  display: grid;
+
+  place-items: center;
+
+  width: 64px;
+  height: 64px;
+
+  margin: 0 auto 24px;
+
+  background-color: var(--color-primary-light);
+
+  color: var(--color-primary);
+
+  border-radius: 50%;
+
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.appointment-success p {
+  max-width: 50ch;
+
+  margin: 0 auto 28px;
+
+  color: var(--color-text-light);
+
+  line-height: 1.8;
+}
+
+.appointment-success-close {
+  padding: 12px 22px;
+
+  background-color: var(--color-primary);
+
+  color: #fff;
+
+  border: 0;
+
+  border-radius: var(--radius-sm);
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition),
+    transform var(--transition);
+}
+
+.appointment-success-close:hover {
+  background-color: var(--color-primary-dark);
+
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   MODAL MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .appointment-modal {
+    padding: 12px;
+  }
+
+  .appointment-dialog {
+    max-height: calc(100vh - 24px);
+
+    padding: 36px 24px 28px;
+
+    border-radius: var(--radius-md);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+  .appointment-close {
+    top: 14px;
+    right: 14px;
+  }
+}
